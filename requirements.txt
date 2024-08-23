@@ -1,0 +1,14 @@
+npm init -y
+
+npm i express cookie-parser mailtrap bcryptjs dotenv jsonwebtoken mongoose crypto
+# Usages
+# express: A web framework for Node.js.
+# cookie-parser: Middleware to parse cookies.
+# mailtrap: Likely referring to the nodemailer integration with Mailtrap for testing email sending.
+# bcryptjs: A library to hash passwords.
+# dotenv: Loads environment variables from a .env file.
+# jsonwebtoken: Used for creating and verifying JSON Web Tokens (JWT).
+# mongoose: An ODM (Object Data Modeling) library for MongoDB and Node.js.
+# crypto: A package that provides cryptographic functionality.
+
+npm i nodemon -D
