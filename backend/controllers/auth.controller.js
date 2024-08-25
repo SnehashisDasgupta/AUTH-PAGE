@@ -61,12 +61,10 @@ export const verifyEmail = async (req, res) => {
         });
 
         if (!user) {
-            return res
-                .status(400)
-                .json({
-                    success: false,
-                    message: "Invalid or expired verification code",
-                });
+            return res.status(400).json({
+                success: false,
+                message: "Invalid or expired verification code",
+            });
         }
 
         user.isVerified = true;
@@ -82,9 +80,8 @@ export const verifyEmail = async (req, res) => {
             user: {
                 ...user._doc,
                 passord: undefined,
-            }
-        })
-
+            },
+        });
     } catch (error) {
         console.log("Error in verifyEmail ", error.message);
         res.status(500).json({ success: false, message: error.message });
@@ -96,5 +93,6 @@ export const login = async (req, res) => {
 };
 
 export const logout = async (req, res) => {
-    res.send("signup");
+    res.clearCookie("token");
+    res.status(200).json({ success: true, message: "Logged out successfully" });
 };
