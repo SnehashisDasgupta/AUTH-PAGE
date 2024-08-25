@@ -10,5 +10,5 @@ export const mailtrapClient = new MailtrapClient({ endpoint: ENDPOINT, token: TO
 
 export const sender = {
   email: "mailtrap@demomailtrap.com",
-  name: "Anonymous",
+  name: "SecureSign",
 };
