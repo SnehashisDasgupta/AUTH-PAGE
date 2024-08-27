@@ -34,7 +34,7 @@ export const signup = async (req, res) => {
             passord: hashedPassword,
             name,
             verificationCode,
-            verificationCodeExpiresAt: Date.now() + 60 * 1000, // 1 min
+            verificationCodeExpiresAt: Date.now() + 5 * 60 * 1000, // 5 min
         });
 
         await user.save();
@@ -200,6 +200,19 @@ export const resetPassword = async (req, res) => {
             .json({ success: true, message: "Password reset Successful" });
     } catch (error) {
         console.log("Error in resetPassword ", error);
+        res.status(400).json({ success: false, message: error.message });
+    }
+};
+
+export const checkAuth = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId).select("-password");
+        if (!user) return res.status(400).json({ success: false, message: "User not found" });
+
+        res.status(200).json({ success: true, user });
+
+    } catch (error) {
+        console.log("Error in checkAuth ", error);
         res.status(400).json({ success: false, message: error.message });
     }
 };
