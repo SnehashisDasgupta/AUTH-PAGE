@@ -1,3 +1,4 @@
+# BACKEND
 npm init -y
 
 npm i express cookie-parser mailtrap bcryptjs dotenv jsonwebtoken mongoose crypto
@@ -12,3 +13,8 @@ npm i express cookie-parser mailtrap bcryptjs dotenv jsonwebtoken mongoose crypt
 # crypto: A package that provides cryptographic functionality.
 
 npm i nodemon -D
+
+
+# FRONTEND
+npm i react-router-dom
+npm i framer-motion # for animation
