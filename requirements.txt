@@ -18,3 +18,4 @@ npm i nodemon -D
 # FRONTEND
 npm i react-router-dom
 npm i framer-motion # for animation
+npm i lucide-react #for icons
