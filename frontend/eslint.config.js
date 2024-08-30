@@ -1,31 +1,30 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import react from 'eslint-plugin-react'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import js from '@eslint/js';
+import globals from 'globals';
+import react from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default [
   { ignores: ['dist'] },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
-      ecmaVersion: 2020,
+      ecmaVersion: 'latest',  // Use 'latest' consistently
       globals: globals.browser,
       parserOptions: {
-        ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
         sourceType: 'module',
       },
     },
-    settings: { react: { version: '18.3' } },
+    settings: { react: { version: '18.0' } },  // Correct React version
     plugins: {
       react,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
     rules: {
-      "react/prop-types": "off",
-      "react/no-unescaped-entities": "off",
+      'react/prop-types': 'off',
+      'react/no-unescaped-entities': 'off',
       ...js.configs.recommended.rules,
       ...react.configs.recommended.rules,
       ...react.configs['jsx-runtime'].rules,
@@ -37,4 +36,4 @@ export default [
       ],
     },
   },
-]
+];
