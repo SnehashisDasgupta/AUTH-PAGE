@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useAuthStore } from "../store/authStore";
+import toast from "react-hot-toast";
 
 const EmailVerification = () => {
     const [code, setCode] = useState(["", "", "", "", "", ""]);
     const inputRefs = useRef([]);
     const navigate = useNavigate();
-    const isLoading = false;
+    const { error, isLoading, verifyEmail } = useAuthStore();
 
     const handleChange = (index, value) => {
         const newCode = [...code];
@@ -41,7 +43,7 @@ const EmailVerification = () => {
             if (value && index < 5) {
                 inputRefs.current[index + 1].focus();
             }
-        };
+        }
     };
 
     const handleKeyDown = (index, e) => {
@@ -51,18 +53,24 @@ const EmailVerification = () => {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const verificationCode = code.join(""); //convert array to string
-        console.log(`Verification code submitted: ${verificationCode}`);
+        try {
+            await verifyEmail(verificationCode);
+            navigate("/");
+            toast.success("Email verified successfully");
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // Auto submit when all fields are filled
     useEffect(() => {
-        if (code.every(digit => digit !== '')){
-            handleSubmit({ preventDefault: () => {} });
+        if (code.every(digit => digit !== '')) {
+            handleSubmit({ preventDefault: () => { } });
         }
-    }, [code]);    
+    }, [code]);
 
     return (
         <div className="max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden">
@@ -100,6 +108,8 @@ const EmailVerification = () => {
                             />
                         ))}
                     </div>
+
+                    {error && <p className="text-red-500 font-semibold mt-2">{error}</p>}
 
                     <motion.button
                         className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-3 px-4 rounded-lg shadow-lg 

@@ -22,3 +22,4 @@ npm i framer-motion # for animation
 npm i lucide-react #for icons
 npm i zustand 
 npm i axios
+npm i react-hot-toast
