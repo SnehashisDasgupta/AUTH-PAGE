@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const EmailVerification = () => {
     const [code, setCode] = useState(["", "", "", "", "", ""]);
     const inputRefs = useRef([]);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const isLoading = false;
 
     const handleChange = (index, value) => {

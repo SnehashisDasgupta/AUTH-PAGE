@@ -13,9 +13,12 @@ npm i express cookie-parser mailtrap bcryptjs dotenv jsonwebtoken mongoose crypt
 # crypto: A package that provides cryptographic functionality.
 
 npm i nodemon -D
+npm i cors
 
 
 # FRONTEND
 npm i react-router-dom
 npm i framer-motion # for animation
 npm i lucide-react #for icons
+npm i zustand 
+npm i axios
